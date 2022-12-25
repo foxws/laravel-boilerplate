@@ -55,11 +55,6 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
         return UserFactory::new();
     }
 
-    public function getRouteKeyName(): string
-    {
-        return 'prefixed_id';
-    }
-
     public function newEloquentBuilder($query): UserQueryBuilder
     {
         return new UserQueryBuilder($query);
@@ -68,6 +63,11 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     public function newCollection(array $models = []): UserCollection
     {
         return new UserCollection($models);
+    }
+
+    public function getRouteKeyName(): string
+    {
+        return 'prefixed_id';
     }
 
     public function registerMediaCollections(): void
