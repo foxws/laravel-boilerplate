@@ -21,6 +21,7 @@ class UserData extends Data
 
     public static function fromModel(User $model): self
     {
+        dd($model);
         return new self(
             id: $model->getRouteKey(),
             email: Lazy::create(fn () => $model->email),
