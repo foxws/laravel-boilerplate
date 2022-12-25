@@ -6,8 +6,5 @@ use Illuminate\Database\Eloquent\Builder;
 
 class UserQueryBuilder extends Builder
 {
-    // public function wherePaid(): self
-    // {
-    //     return $this->whereState('status', Paid::class);
-    // }
+    //
 }
