@@ -6,10 +6,12 @@ namespace Domain\Users\Models;
 
 use Domain\Users\Collections\UserDataCollection;
 use Domain\Users\QueryBuilders\UserQueryBuilder;
+use Domain\Users\States\UserState;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\ModelStates\HasStates;
 use Spatie\PrefixedIds\Models\Concerns\HasPrefixedId;
 
 class User extends Authenticatable
@@ -17,6 +19,7 @@ class User extends Authenticatable
     use HasApiTokens;
     use HasFactory;
     use HasPrefixedId;
+    use HasStates;
     use Notifiable;
 
     /**
@@ -41,6 +44,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'state' => UserState::class,
     ];
 
     public function getRouteKeyName(): string
