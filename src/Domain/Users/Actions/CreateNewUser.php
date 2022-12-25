@@ -13,8 +13,6 @@ use Laravel\Fortify\Rules\Password;
 
 class CreateNewUser implements CreatesNewUsers
 {
-    use PasswordValidationRules;
-
     public function create(array $input): UserData
     {
         Validator::make($input, [
