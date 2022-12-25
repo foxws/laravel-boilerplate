@@ -2,13 +2,16 @@
 
 namespace App\Domain\Users\DataObjects;
 
+use App\Domain\Shared\Support\Casts\PrefixedIdCast;
 use App\Domain\Users\Models\User;
+use Spatie\LaravelData\Attributes\WithCast;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Lazy;
 
 class UserData extends Data
 {
     public function __construct(
+        #[WithCast(PrefixedIdCast::class)]
         public string $id,
         public Lazy|string $email,
         public Lazy|string $password,
