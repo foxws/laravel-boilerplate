@@ -7,7 +7,7 @@ use Domain\Users\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Spatie\LaravelData\DataCollection;
 
-class UserDataCollection extends Collection
+class UserCollection extends Collection
 {
     public function dataCollection(): DataCollection
     {

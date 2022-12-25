@@ -2,11 +2,10 @@
 
 namespace Domain\Users\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-
-use Domain\Users\Collections\UserDataCollection;
+use Domain\Users\Collections\UserCollection;
 use Domain\Users\QueryBuilders\UserQueryBuilder;
 use Domain\Users\States\UserState;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -16,7 +15,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\ModelStates\HasStates;
 use Spatie\PrefixedIds\Models\Concerns\HasPrefixedId;
 
-class User extends Authenticatable implements HasMedia
+class User extends Authenticatable implements HasMedia, MustVerifyEmail
 {
     use HasApiTokens;
     use HasFactory;
@@ -60,9 +59,9 @@ class User extends Authenticatable implements HasMedia
         return new UserQueryBuilder($query);
     }
 
-    public function newCollection(array $models = []): UserDataCollection
+    public function newCollection(array $models = []): UserCollection
     {
-        return new UserDataCollection($models);
+        return new UserCollection($models);
     }
 
     public function registerMediaCollections(): void
