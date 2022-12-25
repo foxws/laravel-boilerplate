@@ -3,26 +3,28 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
+use Spatie\PrefixedIds\PrefixedIds;
+use App\Domain\Users\Models\User;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
+    public function register(): void
     {
         //
     }
 
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
-    public function boot()
+    public function boot(): void
     {
-        //
+        $this->configurePrefixedIds();
+    }
+
+    protected function configurePrefixedIds(): void
+    {
+        PrefixedIds::generateUniqueIdUsing(fn () => Str::random(12));
+
+        PrefixedIds::registerModels([
+            'user-' => User::class,
+        ]);
     }
 }
