@@ -2,7 +2,6 @@
 
 namespace Domain\Users\Actions;
 
-use Domain\Fortify\Concerns\PasswordValidationRules;
 use Domain\Users\DataObjects\UserData;
 use Domain\Users\Models\User;
 use Illuminate\Support\Facades\Hash;
