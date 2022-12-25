@@ -12,7 +12,7 @@ class UserPolicy
 
     public function viewAny(User $user)
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,6 +25,8 @@ class UserPolicy
     public function view(User $user, UserModel $model)
     {
         dd('true');
+
+        return true;
         //
     }
 

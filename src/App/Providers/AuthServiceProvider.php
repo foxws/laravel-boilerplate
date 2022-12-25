@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use Domain\Users\DataObjects\UserData;
 use Domain\Users\Models\User;
 use Domain\Users\Policies\UserPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -16,7 +15,6 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         User::class => UserPolicy::class,
-        UserData::class => UserPolicy::class,
     ];
 
     /**
