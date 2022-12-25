@@ -4,6 +4,7 @@ namespace Domain\Users\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+use Domain\Users\Collections\UserDataCollection;
 use Domain\Users\QueryBuilders\UserQueryBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -50,5 +51,10 @@ class User extends Authenticatable
     public function newEloquentBuilder($query): UserQueryBuilder
     {
         return new UserQueryBuilder($query);
+    }
+
+    public function newCollection(array $models = []): UserDataCollection
+    {
+        return new UserDataCollection($models);
     }
 }
