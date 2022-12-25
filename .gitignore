@@ -2,12 +2,15 @@
 /public/build
 /public/hot
 /public/storage
+/public/vendor
 /storage/*.key
 /vendor
 .env
 .env.backup
 .env.production
 .phpunit.result.cache
+_ide_helper.php
+.phpstorm.meta.php
 Homestead.json
 Homestead.yaml
 auth.json
