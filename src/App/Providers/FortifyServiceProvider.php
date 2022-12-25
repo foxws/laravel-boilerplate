@@ -2,18 +2,18 @@
 
 namespace App\Providers;
 
+use Domain\Users\Actions\AuthenticateUser;
 use Domain\Users\Actions\CreateNewUser;
 use Domain\Users\Actions\ResetUserPassword;
 use Domain\Users\Actions\UpdateUserPassword;
 use Domain\Users\Actions\UpdateUserProfileInformation;
-use Domain\Users\Models\User;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Validation\ValidationException;
+use Laravel\Fortify\Contracts\LoginResponse;
 use Laravel\Fortify\Fortify;
+use Laravel\Fortify\Http\Requests\LoginRequest;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -24,7 +24,16 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->instance(LoginResponse::class, new class implements LoginResponse {
+            public function toResponse($request)
+            {
+                $token = $request->user()->createToken($request->device_name)->plainTextToken;
+
+                return $request->wantsJson()
+                    ? response()->json(['token' => $token])
+                    : redirect()->intended(Fortify::redirects('login'));
+            }
+        });
     }
 
     /**
@@ -38,25 +47,7 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
         Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
-
-        Fortify::authenticateUsing(function (Request $request) {
-            dd('do');
-            $request->validate([
-                'email' => 'required|email',
-                'password' => 'required',
-                'device_name' => 'required',
-            ]);
-
-            $user = User::where('email', $request->email)->first();
-
-            if (! $user || ! Hash::check($request->password, $user->password)) {
-                throw ValidationException::withMessages([
-                    'email' => ['The provided credentials are incorrect.'],
-                ]);
-            }
-
-            return $user->createToken($request->device_name)->plainTextToken;
-        });
+        Fortify::authenticateUsing(fn (LoginRequest $request) => (new AuthenticateUser())->execute($request));
 
         RateLimiter::for('login', function (Request $request) {
             $email = (string) $request->email;

@@ -9,7 +9,7 @@ use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
 
 class UpdateUserProfileInformation implements UpdatesUserProfileInformation
 {
-    public function update($user, array $input): void
+    public function update($user, array $input): mixed
     {
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],

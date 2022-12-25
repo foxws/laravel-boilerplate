@@ -2,27 +2,27 @@
 
 namespace Domain\Users\Actions;
 
-use Domain\Users\DataObjects\UserData;
 use Domain\Users\Models\User;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-use Laravel\Fortify\Rules\Password;
+use Illuminate\Validation\ValidationException;
+use Laravel\Fortify\Http\Requests\LoginRequest;
 
 class AuthenticateUser
 {
-    public function create(array $input): UserData
+    public function execute(LoginRequest $request): User
     {
-        dd('foo');
+        $request->validate([
+            'device_name' => ['required', 'string', 'max:255'],
+        ]);
 
-        Validator::make($input, [
-            'email' => ['required', 'string', 'email', 'max:255'],
-            'password' => ['required', 'string', new Password],
-        ])->validate();
+        $user = User::where('email', $request->email)->first();
 
-        $user = User::firstWhere('email', $input['email']);
-
-        if ($user && Hash::check($input['password'], $user->password)) {
-            return UserData::from($user);
+        if (! $user || ! Hash::check($request->password, $user->password)) {
+            throw ValidationException::withMessages([
+                'email' => [__('The provided credentials are incorrect.')],
+            ]);
         }
+
+        return $user;
     }
 }
