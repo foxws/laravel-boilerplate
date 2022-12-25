@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Shared\Exceptions;
+namespace Domain\Shared\Exceptions;
 
 use Exception;
 

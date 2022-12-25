@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
+use Domain\Users\Models\User;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Spatie\PrefixedIds\PrefixedIds;
-use App\Domain\Users\Models\User;
 
 class AppServiceProvider extends ServiceProvider
 {

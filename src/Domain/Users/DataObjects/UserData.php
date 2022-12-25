@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Domain\Users\DataObjects;
+namespace Domain\Users\DataObjects;
 
-use App\Domain\Shared\Support\Casts\PrefixedIdCast;
-use App\Domain\Users\Models\User;
+use Domain\Shared\Support\Casts\PrefixedIdCast;
+use Domain\Users\Models\User;
 use Spatie\LaravelData\Attributes\WithCast;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Lazy;

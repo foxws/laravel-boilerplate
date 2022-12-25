@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Domain\Users\Models;
+namespace Domain\Users\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Domain\Users\QueryBuilders\UserQueryBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -43,5 +45,10 @@ class User extends Authenticatable
     public function getRouteKeyName(): string
     {
         return 'prefixed_id';
+    }
+
+    public function newEloquentBuilder($query): UserQueryBuilder
+    {
+        return new UserQueryBuilder($query);
     }
 }

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Domain\Shared\Support\Casts;
+namespace Domain\Shared\Support\Casts;
 
-use App\Domain\Shared\Exceptions\CannotCastPrefixedId;
+use Domain\Shared\Exceptions\CannotCastPrefixedId;
 use Spatie\LaravelData\Casts\Cast;
 use Spatie\LaravelData\Support\DataProperty;
 use Spatie\PrefixedIds\PrefixedIds;
