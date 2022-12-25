@@ -17,8 +17,8 @@ class UserIndexQuery extends QueryBuilder
 
         parent::__construct($query, $request);
 
-        // $this
-        //     ->allowedFilters('email', 'name')
-        //     ->allowedSorts('email', 'name');
+        $this
+            ->allowedFilters('email', 'name')
+            ->allowedSorts('email', 'name');
     }
 }

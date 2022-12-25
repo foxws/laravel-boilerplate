@@ -2,6 +2,7 @@
 
 namespace Domain\Users\Models;
 
+use Database\Factories\UserFactory;
 use Domain\Users\Collections\UserCollection;
 use Domain\Users\QueryBuilders\UserQueryBuilder;
 use Domain\Users\States\UserState;
@@ -48,6 +49,11 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
         'email_verified_at' => 'datetime',
         'state' => UserState::class,
     ];
+
+    protected static function newFactory(): UserFactory
+    {
+        return UserFactory::new();
+    }
 
     public function getRouteKeyName(): string
     {
