@@ -10,6 +10,14 @@ use Spatie\LaravelData\CursorPaginatedDataCollection;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        // $this->middleware('auth');
+
+        $this->authorizeResource(User::class, 'user');
+        $this->authorizeResource(UserData::class, 'user');
+    }
+
     public function index(UserIndexQuery $userQuery): CursorPaginatedDataCollection
     {
         return UserData::collection(
