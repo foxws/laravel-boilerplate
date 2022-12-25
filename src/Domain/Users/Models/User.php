@@ -11,15 +11,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\ModelStates\HasStates;
 use Spatie\PrefixedIds\Models\Concerns\HasPrefixedId;
 
-class User extends Authenticatable
+class User extends Authenticatable implements HasMedia
 {
     use HasApiTokens;
     use HasFactory;
     use HasPrefixedId;
     use HasStates;
+    use InteractsWithMedia;
     use Notifiable;
 
     /**
@@ -60,5 +63,13 @@ class User extends Authenticatable
     public function newCollection(array $models = []): UserDataCollection
     {
         return new UserDataCollection($models);
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this
+            ->addMediaCollection('avatar')
+            ->acceptsMimeTypes(['image/jpeg', 'image/png', 'image/svg'])
+            ->singleFile();
     }
 }
