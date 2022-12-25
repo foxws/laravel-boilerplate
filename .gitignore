@@ -1,8 +1,5 @@
 /node_modules
-/public/build
-/public/hot
-/public/storage
-/public/vendor
+/public
 /storage/*.key
 /vendor
 .env
@@ -10,6 +7,7 @@
 .env.production
 .phpunit.result.cache
 _ide_helper.php
+_ide_helper_models.php
 .phpstorm.meta.php
 Homestead.json
 Homestead.yaml
