@@ -10,7 +10,8 @@ Route::name('auth.')->middleware(config('fortify.middleware', 'web'))->prefix('a
         ->middleware(array_filter([
             'guest',
             $limiter ? 'throttle:'.$limiter : null,
-        ]));
+        ]))
+        ->name('login');
 
     Route::post('/logout', [AuthenticateController::class, 'destroy'])
         ->middleware('auth:sanctum')
