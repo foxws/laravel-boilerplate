@@ -10,7 +10,6 @@ return new class extends Migration
     {
         Schema::create('media', function (Blueprint $table) {
             $table->bigIncrements('id');
-
             $table->morphs('model');
             $table->uuid('uuid')->nullable()->unique();
             $table->string('collection_name');
@@ -19,13 +18,13 @@ return new class extends Migration
             $table->string('mime_type')->nullable();
             $table->string('disk');
             $table->string('conversions_disk')->nullable();
+            $table->string('state')->nullable();
             $table->unsignedBigInteger('size');
             $table->json('manipulations');
             $table->json('custom_properties');
             $table->json('generated_conversions');
             $table->json('responsive_images');
             $table->unsignedInteger('order_column')->nullable()->index();
-
             $table->nullableTimestamps();
         });
     }

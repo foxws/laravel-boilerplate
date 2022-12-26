@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Domain\Media\Models\Media;
 use Domain\Users\Models\User;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -35,6 +36,7 @@ class RouteServiceProvider extends ServiceProvider
 
     protected function configureModelBinding(): void
     {
+        Route::bind('media', fn (string $value) => Media::findByUuid($value));
         Route::bind('user', fn (string $value) => User::findByPrefixedIdOrFail($value));
     }
 

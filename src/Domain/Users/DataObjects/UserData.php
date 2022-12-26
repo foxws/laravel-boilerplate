@@ -2,6 +2,7 @@
 
 namespace Domain\Users\DataObjects;
 
+use Carbon\Carbon;
 use Domain\Shared\Support\Casts\PrefixedIdCast;
 use Domain\Users\Models\User;
 use Spatie\LaravelData\Attributes\WithCast;
@@ -16,6 +17,9 @@ class UserData extends Data
         public Lazy|string $email,
         public Lazy|string $password,
         public Lazy|string $name,
+        public Lazy|Carbon|null $email_verified_at,
+        public Lazy|Carbon $created_at,
+        public Lazy|Carbon $updated_at,
     ) {
     }
 
@@ -26,6 +30,9 @@ class UserData extends Data
             email: Lazy::create(fn () => $model->email),
             password: Lazy::create(fn () => $model->password),
             name: Lazy::create(fn () => $model->name),
+            email_verified_at: Lazy::create(fn () => $model->email_verified_at),
+            created_at: Lazy::create(fn () => $model->created_at),
+            updated_at: Lazy::create(fn () => $model->updated_at),
         );
     }
 
