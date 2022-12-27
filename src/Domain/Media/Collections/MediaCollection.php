@@ -12,7 +12,7 @@ class MediaCollection extends Collection
     public function dataCollection(): DataCollection
     {
         return MediaData::collection(
-            $this->map(fn (Media $model) => MediaData::fromModel($model))
+            $this->map(fn (Media $model) => MediaData::from($model))
         );
     }
 }

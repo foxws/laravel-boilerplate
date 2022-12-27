@@ -16,4 +16,8 @@ Route::name('auth.')->prefix('v1')->group(function () {
     Route::post('/logout', [AuthenticateController::class, 'destroy'])
         ->middleware('auth:sanctum')
         ->name('logout');
+
+    Route::get('/user', [AuthenticateController::class, 'show'])
+        ->middleware('auth:sanctum')
+        ->name('user');
 });

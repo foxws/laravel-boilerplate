@@ -26,6 +26,6 @@ class CreateNewUser implements CreatesNewUsers
             'password' => Hash::make($input['password']),
         ]);
 
-        return UserData::fromModel($model);
+        return UserData::from($model);
     }
 }

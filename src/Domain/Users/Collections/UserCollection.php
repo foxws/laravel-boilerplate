@@ -12,7 +12,7 @@ class UserCollection extends Collection
     public function dataCollection(): DataCollection
     {
         return UserData::collection(
-            $this->map(fn (User $model) => UserData::fromModel($model))
+            $this->map(fn (User $model) => UserData::from($model))
         );
     }
 }
