@@ -5,10 +5,9 @@ namespace Domain\Media\Models;
 use Domain\Media\Collections\MediaCollection;
 use Domain\Media\QueryBuilders\MediaQueryBuilder;
 use Domain\Media\States\MediaState;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
-use Spatie\ModelStates\HasStates;
 use Spatie\MediaLibrary\MediaCollections\Models\Media as BaseMedia;
+use Spatie\ModelStates\HasStates;
 
 class Media extends BaseMedia
 {

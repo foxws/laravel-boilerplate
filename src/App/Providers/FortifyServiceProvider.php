@@ -28,9 +28,7 @@ class FortifyServiceProvider extends ServiceProvider
             {
                 $token = $request->user()->createToken($request->device_name)->plainTextToken;
 
-                return $request->wantsJson()
-                    ? response()->json(['token' => $token])
-                    : redirect()->intended(Fortify::redirects('login'));
+                return response()->json(['token' => $token]);
             }
         });
 
