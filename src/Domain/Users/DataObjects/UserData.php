@@ -2,10 +2,10 @@
 
 namespace Domain\Users\DataObjects;
 
-use Carbon\Carbon;
 use Domain\Shared\Support\Casts\PrefixedIdCast;
 use Domain\Users\Models\User;
 use Domain\Users\Rules\UserExists;
+use Illuminate\Support\Carbon;
 use Illuminate\Validation\Rule;
 use Spatie\LaravelData\Attributes\WithCast;
 use Spatie\LaravelData\Data;

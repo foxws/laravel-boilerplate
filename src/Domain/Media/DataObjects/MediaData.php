@@ -21,7 +21,6 @@ class MediaData extends Data
         public Lazy|string $disk,
         public Lazy|string $conversions_disk,
         public Lazy|int $size,
-        public Lazy|int $order_column,
         public Lazy|Carbon $created_at,
         public Lazy|Carbon $updated_at,
     ) {
@@ -38,7 +37,6 @@ class MediaData extends Data
             disk: Lazy::create(fn () => $model->disk),
             conversions_disk: Lazy::create(fn () => $model->conversions_disk),
             size: Lazy::create(fn () => $model->size),
-            order_column: Lazy::create(fn () => $model->order_column),
             created_at: Lazy::create(fn () => $model->created_at),
             updated_at: Lazy::create(fn () => $model->updated_at),
         );
