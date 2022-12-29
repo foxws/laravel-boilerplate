@@ -5,6 +5,8 @@ namespace Domain\Users\DataObjects;
 use Carbon\Carbon;
 use Domain\Shared\Support\Casts\PrefixedIdCast;
 use Domain\Users\Models\User;
+use Domain\Users\Rules\UserExists;
+use Illuminate\Validation\Rule;
 use Spatie\LaravelData\Attributes\WithCast;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Lazy;
@@ -41,10 +43,13 @@ class UserData extends Data
         return true;
     }
 
-    public static function rules(): array
+    public static function rules(array $payload = []): array
     {
         return [
-            //
+            'id' => ['required', 'string', new UserExists()],
+            'email' => ['sometimes', 'email', 'max:255', Rule::unique('users')->ignore($payload['id'])],
+            'password' => ['sometimes', 'password'],
+            'name' => ['sometimes', 'string', 'max:255'],
         ];
     }
 }
