@@ -36,7 +36,7 @@ class RouteServiceProvider extends ServiceProvider
 
     protected function configureModelBinding(): void
     {
-        Route::bind('media', fn (string $value) => Media::findByUuid($value));
+        Route::bind('media', fn (string $value) => Media::findByUuidOrFail($value));
         Route::bind('user', fn (string $value) => User::findByPrefixedIdOrFail($value));
     }
 
