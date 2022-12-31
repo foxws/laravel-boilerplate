@@ -2,24 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use Domain\Users\DataObjects\UserData;
-use Domain\Users\Models\User;
-use Domain\Users\QueryBuilders\UserIndexQuery;
+use Domain\Posts\DataObjects\PostData;
+use Domain\Posts\Models\Post;
+use Domain\Posts\QueryBuilders\PostIndexQuery;
 use Illuminate\Http\Request;
 use Spatie\LaravelData\CursorPaginatedDataCollection;
 
-class UserController extends Controller
+class PostController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth:sanctum');
 
-        $this->authorizeResource(User::class, 'user');
+        $this->authorizeResource(Post::class, 'post');
     }
 
-    public function index(UserIndexQuery $userQuery): CursorPaginatedDataCollection
+    public function index(PostIndexQuery $userQuery): CursorPaginatedDataCollection
     {
-        return UserData::collection(
+        return PostData::collection(
             $userQuery->jsonPaginate()
         );
     }
@@ -29,9 +29,9 @@ class UserController extends Controller
         //
     }
 
-    public function show(User $model): UserData
+    public function show(Post $model): PostData
     {
-        return UserData::from($model);
+        return PostData::from($model);
     }
 
     public function update(Request $request, $id)
