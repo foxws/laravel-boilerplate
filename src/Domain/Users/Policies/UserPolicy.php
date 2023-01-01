@@ -18,8 +18,6 @@ class UserPolicy
 
     public function view(User $user, UserModel $model): Response|bool
     {
-        dd('true');
-
         return true;
     }
 
