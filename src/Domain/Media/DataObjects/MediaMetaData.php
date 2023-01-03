@@ -2,6 +2,7 @@
 
 namespace Domain\Media\DataObjects;
 
+use Domain\Media\Models\MediaMetadata as Model;
 use Illuminate\Support\Carbon;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Lazy;
@@ -34,7 +35,7 @@ class MediaMetaData extends Data
     ) {
     }
 
-    public static function fromModel(MediaData $model): self
+    public static function fromModel(Model $model): self
     {
         return new self(
             title: Lazy::create(fn () => $model->title),
