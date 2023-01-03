@@ -2,18 +2,13 @@
 
 namespace Domain\Posts\Models;
 
-use Database\Factories\UserFactory;
-use Domain\Users\Collections\UserCollection;
-use Domain\Users\QueryBuilders\UserQueryBuilder;
-use Domain\Users\States\UserState;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Database\Factories\PostFactory;
+use Domain\Posts\Collections\PostCollection;
+use Domain\Posts\QueryBuilders\PostQueryBuilder;
+use Domain\Posts\States\PostState;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\ModelStates\HasStates;
 use Spatie\PrefixedIds\Models\Concerns\HasPrefixedId;
 
@@ -29,6 +24,9 @@ class Post extends Model
      */
     protected $fillable = [
         'name',
+        'content',
+        'summary',
+        'state',
     ];
 
     /**
@@ -42,22 +40,22 @@ class Post extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'state' => UserState::class,
+        'state' => PostState::class,
     ];
 
-    protected static function newFactory(): UserFactory
+    protected static function newFactory(): PostFactory
     {
-        return UserFactory::new();
+        return PostFactory::new();
     }
 
-    public function newEloquentBuilder($query): UserQueryBuilder
+    public function newEloquentBuilder($query): PostQueryBuilder
     {
-        return new UserQueryBuilder($query);
+        return new PostQueryBuilder($query);
     }
 
-    public function newCollection(array $models = []): UserCollection
+    public function newCollection(array $models = []): PostCollection
     {
-        return new UserCollection($models);
+        return new PostCollection($models);
     }
 
     public function getRouteKeyName(): string
