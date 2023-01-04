@@ -4,8 +4,8 @@ namespace Domain\Media\Collections;
 
 use Domain\Media\DataObjects\MediaData;
 use Domain\Media\Models\Media;
-use Illuminate\Support\Collection;
 use Spatie\LaravelData\DataCollection;
+use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection as Collection;
 
 class MediaCollection extends Collection
 {

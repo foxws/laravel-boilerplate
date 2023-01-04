@@ -9,7 +9,9 @@ use Domain\Posts\States\PostState;
 use Domain\Users\Concerns\HasUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\ModelStates\HasStates;
 use Spatie\PrefixedIds\Models\Concerns\HasPrefixedId;
 use Spatie\Sluggable\HasTranslatableSlug;
@@ -27,6 +29,8 @@ class Post extends Model
     use HasTranslations;
     use HasUser;
     use Notifiable;
+    use InteractsWithMedia;
+    use SoftDeletes;
 
     /**
      * @var array<int, string>

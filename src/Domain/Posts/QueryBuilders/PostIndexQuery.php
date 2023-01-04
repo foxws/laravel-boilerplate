@@ -12,7 +12,7 @@ class PostIndexQuery extends QueryBuilder
     {
         $query = Post::query()
             ->with([
-                'media.avatar',
+                'media',
             ]);
 
         parent::__construct($query, $request);
