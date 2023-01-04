@@ -52,6 +52,14 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
         'state' => UserState::class,
     ];
 
+    /**
+     * @var array<int, string>
+     */
+    protected $guard_name = [
+        'api',
+        'web',
+    ];
+
     protected static function newFactory(): UserFactory
     {
         return UserFactory::new();

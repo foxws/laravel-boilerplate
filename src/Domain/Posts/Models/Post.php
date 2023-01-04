@@ -59,6 +59,8 @@ class Post extends Model
     protected $translatable = [
         'name',
         'slug',
+        'content',
+        'summary',
     ];
 
     protected static function newFactory(): PostFactory
