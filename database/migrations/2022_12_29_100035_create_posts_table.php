@@ -18,6 +18,7 @@ return new class extends Migration
             $table->json('content')->nullable();
             $table->json('summary')->nullable();
             $table->string('state')->nullable();
+            $table->timestamp('published_at');
             $table->timestamps();
             $table->softDeletes();
         });

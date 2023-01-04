@@ -27,6 +27,7 @@ class Post extends Model
         'content',
         'summary',
         'state',
+        'published_at',
     ];
 
     /**
@@ -41,6 +42,7 @@ class Post extends Model
      */
     protected $casts = [
         'state' => PostState::class,
+        'published_at' => 'datetime',
     ];
 
     protected static function newFactory(): PostFactory
