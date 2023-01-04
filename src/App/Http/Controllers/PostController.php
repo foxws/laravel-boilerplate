@@ -17,11 +17,12 @@ class PostController extends Controller
         $this->authorizeResource(Post::class, 'post');
     }
 
-    public function index(PostIndexQuery $userQuery): CursorPaginatedDataCollection
+    public function index(PostIndexQuery $query): CursorPaginatedDataCollection
     {
-        return PostData::collection(
-            $userQuery->jsonPaginate()
-        );
+        $items = $query->jsonPaginate();
+
+        return PostData::collection($items)
+            ->include('*');
     }
 
     public function store(Request $request)

@@ -17,11 +17,12 @@ class UserController extends Controller
         $this->authorizeResource(User::class, 'user');
     }
 
-    public function index(UserIndexQuery $userQuery): CursorPaginatedDataCollection
+    public function index(UserIndexQuery $query): CursorPaginatedDataCollection
     {
-        return UserData::collection(
-            $userQuery->jsonPaginate()
-        );
+        $items = $query->jsonPaginate();
+
+        return UserData::collection($items)
+            ->include('email');
     }
 
     public function store(Request $request)
