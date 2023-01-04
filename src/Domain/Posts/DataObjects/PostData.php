@@ -46,7 +46,7 @@ class PostData extends Data
     {
         return [
             'id' => ['required', 'string', new PostExists()],
-            'name' => ['sometimes', 'email', 'max:255'],
+            'name' => ['sometimes', 'string', 'max:255'],
             'content' => ['sometimes', 'string', 'max:2048'],
             'summary' => ['sometimes', 'string', 'max:1024'],
         ];

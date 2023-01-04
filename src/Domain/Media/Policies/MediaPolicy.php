@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Posts\Policies;
+namespace Domain\Media\Policies;
 
 use Domain\Media\Models\Media;
 use Domain\Users\Models\User;

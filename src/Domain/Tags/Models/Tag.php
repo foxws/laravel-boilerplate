@@ -4,16 +4,20 @@ namespace Domain\Tags\Models;
 
 use Database\Factories\TagFactory;
 use Domain\Tags\Collections\TagCollection;
+use Domain\Tags\Enums\TagType;
 use Domain\Tags\QueryBuilders\TagQueryBuilder;
 use Domain\Tags\States\TagState;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Notifications\Notifiable;
 use Spatie\ModelStates\HasStates;
+use Spatie\PrefixedIds\Models\Concerns\HasPrefixedId;
 use Spatie\Tags\Tag as BaseTag;
 
 class Tag extends BaseTag
 {
     use HasFactory;
+    use HasPrefixedId;
     use HasStates;
     use Notifiable;
 
@@ -37,6 +41,16 @@ class Tag extends BaseTag
      */
     protected $casts = [
         'state' => TagState::class,
+        'type' => TagType::class.':nullable',
+    ];
+
+    /**
+     * @var array<int, string>
+     */
+    public $translatable = [
+        'name',
+        'slug',
+        'description',
     ];
 
     protected static function newFactory(): TagFactory
@@ -56,6 +70,11 @@ class Tag extends BaseTag
 
     public function getRouteKeyName(): string
     {
-        return 'slug';
+        return 'prefixed_id';
+    }
+
+    public function posts(): MorphToMany
+    {
+        return $this->morphedByMany(Post::class, 'taggable');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Posts\Policies;
+namespace Domain\Tags\Policies;
 
 use Domain\Tags\Models\Tag;
 use Domain\Users\Models\User;

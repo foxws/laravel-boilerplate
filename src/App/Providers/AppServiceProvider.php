@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use Domain\Posts\Models\Post;
+use Domain\Tags\Models\Tag;
 use Domain\Users\Models\User;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
@@ -25,6 +27,8 @@ class AppServiceProvider extends ServiceProvider
 
         PrefixedIds::registerModels([
             'user-' => User::class,
+            'post-' => Post::class,
+            'tag-' => Tag::class,
         ]);
     }
 }

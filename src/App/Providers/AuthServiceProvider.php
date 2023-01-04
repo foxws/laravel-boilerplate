@@ -3,11 +3,11 @@
 namespace App\Providers;
 
 use Domain\Media\Models\Media;
+use Domain\Media\Policies\MediaPolicy;
 use Domain\Posts\Models\Post;
-use Domain\Posts\Policies\MediaPolicy;
 use Domain\Posts\Policies\PostPolicy;
-use Domain\Posts\Policies\TagPolicy;
 use Domain\Tags\Models\Tag;
+use Domain\Tags\Policies\TagPolicy;
 use Domain\Users\Models\User;
 use Domain\Users\Policies\UserPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;

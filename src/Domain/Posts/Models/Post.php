@@ -6,17 +6,26 @@ use Database\Factories\PostFactory;
 use Domain\Posts\Collections\PostCollection;
 use Domain\Posts\QueryBuilders\PostQueryBuilder;
 use Domain\Posts\States\PostState;
+use Domain\Users\Concerns\HasUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Spatie\ModelStates\HasStates;
 use Spatie\PrefixedIds\Models\Concerns\HasPrefixedId;
+use Spatie\Sluggable\HasTranslatableSlug;
+use Spatie\Sluggable\SlugOptions;
+use Spatie\Tags\HasTags;
+use Spatie\Translatable\HasTranslations;
 
 class Post extends Model
 {
     use HasFactory;
     use HasPrefixedId;
     use HasStates;
+    use HasTags;
+    use HasTranslatableSlug;
+    use HasTranslations;
+    use HasUser;
     use Notifiable;
 
     /**
@@ -44,6 +53,14 @@ class Post extends Model
         'published_at' => 'datetime',
     ];
 
+    /**
+     * @var array<int, string>
+     */
+    protected $translatable = [
+        'name',
+        'slug',
+    ];
+
     protected static function newFactory(): PostFactory
     {
         return PostFactory::new();
@@ -62,5 +79,12 @@ class Post extends Model
     public function getRouteKeyName(): string
     {
         return 'prefixed_id';
+    }
+
+    public function getSlugOptions(): SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('slug');
     }
 }

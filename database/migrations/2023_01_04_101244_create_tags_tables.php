@@ -10,8 +10,10 @@ return new class extends Migration
     {
         Schema::create('tags', function (Blueprint $table) {
             $table->id();
+            $table->string('prefixed_id')->unique();
             $table->json('name');
             $table->json('slug');
+            $table->json('description');
             $table->string('type')->nullable();
             $table->string('state')->nullable();
             $table->integer('order_column')->nullable();

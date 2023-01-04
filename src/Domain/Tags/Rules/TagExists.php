@@ -1,11 +1,11 @@
 <?php
 
-namespace Domain\Posts\Rules;
+namespace Domain\Tags\Rules;
 
-use Domain\Posts\Models\Post;
+use Domain\Tags\Models\Tag;
 use Illuminate\Contracts\Validation\Rule;
 
-class PostExists implements Rule
+class TagExists implements Rule
 {
     /**
      * Determine if the validation rule passes.
@@ -16,7 +16,7 @@ class PostExists implements Rule
      */
     public function passes($attribute, $value)
     {
-        return Post::findByPrefixedId($value)?->exists();
+        return Tag::findBySlugOrFail($value)?->exists();
     }
 
     /**
@@ -26,6 +26,6 @@ class PostExists implements Rule
      */
     public function message(): string
     {
-        return __('The given post does not exists.');
+        return __('The given tag does not exists.');
     }
 }
