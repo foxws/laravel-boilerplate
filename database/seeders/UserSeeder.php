@@ -10,10 +10,12 @@ class UserSeeder extends Seeder
 {
     public function run(): void
     {
-        User::firstOrCreate(
+        $model = User::firstOrCreate(
             ['email' => 'administrator@example.com'],
             ['name' => 'administrator', 'password' => Hash::make('password')]
         );
+
+        $model->assignRole('super-admin');
 
         User::factory()->count(10)->create();
     }
