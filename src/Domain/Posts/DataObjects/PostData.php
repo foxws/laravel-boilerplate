@@ -60,7 +60,7 @@ class PostData extends Data
             'content' => ['sometimes', 'string', 'max:2048'],
             'summary' => ['sometimes', 'string', 'max:1024'],
             'tags' => ['exclude_without:tags', 'nullable', 'array'],
-            'tags.*.id' => ['string', new TagExists()],
+            'tags.*.id' => ['required', 'string', new TagExists()],
         ];
     }
 }
