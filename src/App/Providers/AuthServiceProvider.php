@@ -2,6 +2,12 @@
 
 namespace App\Providers;
 
+use Domain\Media\Models\Media;
+use Domain\Posts\Models\Post;
+use Domain\Posts\Policies\MediaPolicy;
+use Domain\Posts\Policies\PostPolicy;
+use Domain\Posts\Policies\TagPolicy;
+use Domain\Tags\Models\Tag;
 use Domain\Users\Models\User;
 use Domain\Users\Policies\UserPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -15,6 +21,9 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         User::class => UserPolicy::class,
+        Media::class => MediaPolicy::class,
+        Post::class => PostPolicy::class,
+        Tag::class => TagPolicy::class,
     ];
 
     /**
@@ -25,7 +34,5 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-
-        //
     }
 }

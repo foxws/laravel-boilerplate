@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Domain\Media\Models\Media;
 use Domain\Posts\Models\Post;
+use Domain\Tags\Models\Tag;
 use Domain\Users\Models\User;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -39,6 +40,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::bind('media', fn (string $value) => Media::findByUuidOrFail($value));
         Route::bind('post', fn (string $value) => Post::findByPrefixedIdOrFail($value));
+        Route::bind('tag', fn (string $value) => Tag::findBySlugOrFail($value));
         Route::bind('user', fn (string $value) => User::findByPrefixedIdOrFail($value));
     }
 

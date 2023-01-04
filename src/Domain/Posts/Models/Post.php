@@ -26,7 +26,6 @@ class Post extends Model
         'name',
         'content',
         'summary',
-        'state',
         'published_at',
     ];
 
