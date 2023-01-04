@@ -52,14 +52,6 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
         'state' => UserState::class,
     ];
 
-    /**
-     * @var array<int, string>
-     */
-    protected $guard_name = [
-        'api',
-        'web',
-    ];
-
     protected static function newFactory(): UserFactory
     {
         return UserFactory::new();
@@ -73,6 +65,11 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     public function newCollection(array $models = []): UserCollection
     {
         return new UserCollection($models);
+    }
+
+    public function guardName(): array
+    {
+        return ['api', 'web'];
     }
 
     public function getRouteKeyName(): string
