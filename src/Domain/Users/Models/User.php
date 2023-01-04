@@ -14,6 +14,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\ModelStates\HasStates;
+use Spatie\Permission\Traits\HasRoles;
 use Spatie\PrefixedIds\Models\Concerns\HasPrefixedId;
 
 class User extends Authenticatable implements HasMedia, MustVerifyEmail
@@ -21,6 +22,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     use HasApiTokens;
     use HasFactory;
     use HasPrefixedId;
+    use HasRoles;
     use HasStates;
     use InteractsWithMedia;
     use Notifiable;

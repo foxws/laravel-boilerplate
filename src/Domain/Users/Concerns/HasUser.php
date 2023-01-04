@@ -2,6 +2,7 @@
 
 namespace Domain\Users\Concerns;
 
+use Domain\Users\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 

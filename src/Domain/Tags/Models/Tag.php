@@ -3,6 +3,7 @@
 namespace Domain\Tags\Models;
 
 use Database\Factories\TagFactory;
+use Domain\Posts\Models\Post;
 use Domain\Tags\Collections\TagCollection;
 use Domain\Tags\Enums\TagType;
 use Domain\Tags\QueryBuilders\TagQueryBuilder;
@@ -47,7 +48,7 @@ class Tag extends BaseTag
     /**
      * @var array<int, string>
      */
-    public $translatable = [
+    public array $translatable = [
         'name',
         'slug',
         'description',
