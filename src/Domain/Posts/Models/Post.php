@@ -7,6 +7,7 @@ use Domain\Posts\Collections\PostCollection;
 use Domain\Posts\QueryBuilders\PostQueryBuilder;
 use Domain\Posts\States\PostState;
 use Domain\Users\Concerns\HasUser;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -99,5 +100,19 @@ class Post extends Model
     public function searchableAs(): string
     {
         return 'posts_index';
+    }
+
+    protected function makeAllSearchableUsing(Builder $query)
+    {
+        return $query->with('tags');
+    }
+
+    public function toSearchableArray(): array
+    {
+        $array = $this->toArray();
+
+        // TODO: extract translations
+
+        return $array;
     }
 }
