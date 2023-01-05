@@ -9,7 +9,6 @@ class SearchForPosts
 {
     public function execute(string $query = '*'): Collection
     {
-        logger($query);
         return Post::search($query)
             ->take(500)
             ->get();
