@@ -2,20 +2,20 @@
 
 namespace Domain\Posts\Support\QueryBuilder\Filters;
 
-use Spatie\QueryBuilder\Filters\Filter;
+use Domain\Posts\Actions\BuildUserFeed;
 use Illuminate\Database\Eloquent\Builder;
+use Spatie\QueryBuilder\Filters\Filter;
 
 class FilterList implements Filter
 {
     public function __invoke(Builder $query, mixed $value, string $property): void
     {
-        $ids = [1,2,3];
+        $feed = app(BuildUserFeed::class)->execute();
 
-        $query->whereIn('id', $ids)
-            ->orderByRaw('FIELD (id, ' . implode(', ', $ids) . ') ASC');
+        $ids = $feed->pluck('id')->toArray();
 
-        // $query->whereHas('permissions', function (Builder $query) use ($value) {
-        //     $query->where('name', $value);
-        // });
+        $query
+            ->whereIn('id', $ids)
+            ->orderByRaw('FIELD (id, '.implode(', ', $ids).')');
     }
 }

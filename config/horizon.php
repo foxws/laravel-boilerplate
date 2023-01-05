@@ -167,7 +167,7 @@ return [
     |
     */
 
-     'defaults' => [
+    'defaults' => [
         'supervisor-1' => [
             'connection' => 'redis',
             'queue' => ['default'],
