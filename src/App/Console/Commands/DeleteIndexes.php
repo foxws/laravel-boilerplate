@@ -24,7 +24,7 @@ class DeleteIndexes extends Command
 
         $this->getIndexes()->each(
             fn (array $item) => rescue(
-                callback: fn() => $client->deleteIndex($item['name']),
+                callback: fn () => $client->deleteIndex($item['name']),
                 report: false
             )
         );

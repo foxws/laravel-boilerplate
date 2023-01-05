@@ -26,7 +26,7 @@ class CreateIndexes extends Command
 
         $this->getIndexes()->each(function (array $item) use ($client, $settings): void {
             // Delete index (if exists)
-            rescue(callback: fn() => $client->deleteIndex($item['name']), report: false);
+            rescue(callback: fn () => $client->deleteIndex($item['name']), report: false);
 
             // Create index
             $client->createIndex($item['name']);

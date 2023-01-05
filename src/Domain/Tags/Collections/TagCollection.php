@@ -4,7 +4,7 @@ namespace Domain\Tags\Collections;
 
 use Domain\Posts\DataObjects\PostData;
 use Domain\Posts\Models\Post;
-use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Collection;
 use Spatie\LaravelData\DataCollection;
 
 class TagCollection extends Collection
