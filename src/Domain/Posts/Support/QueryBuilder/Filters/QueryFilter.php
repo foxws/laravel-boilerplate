@@ -10,7 +10,7 @@ class QueryFilter implements Filter
 {
     public function __invoke(Builder $query, mixed $value, string $property): void
     {
-        if (! is_string ($value) || strlen($value) < 1) {
+        if (! is_string($value) || strlen($value) < 1) {
             return;
         }
 
