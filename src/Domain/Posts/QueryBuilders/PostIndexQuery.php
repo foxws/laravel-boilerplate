@@ -3,7 +3,8 @@
 namespace Domain\Posts\QueryBuilders;
 
 use Domain\Posts\Models\Post;
-use Domain\Posts\Support\QueryBuilder\Filters\FilterList;
+use Domain\Posts\Support\QueryBuilder\Filters\ListFilter;
+use Domain\Posts\Support\QueryBuilder\Filters\QueryFilter;
 use Illuminate\Http\Request;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -18,7 +19,8 @@ class PostIndexQuery extends QueryBuilder
 
         $this
             ->allowedFilters([
-                AllowedFilter::custom('list', new FilterList),
+                AllowedFilter::custom('list', new ListFilter),
+                AllowedFilter::custom('query', new QueryFilter),
             ]);
     }
 }

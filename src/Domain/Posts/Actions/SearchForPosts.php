@@ -5,14 +5,12 @@ namespace Domain\Posts\Actions;
 use Domain\Posts\Models\Post;
 use Illuminate\Support\Collection;
 
-class SearchPosts
+class SearchForPosts
 {
-    public function execute(): Collection
+    public function execute(string $query = '*'): Collection
     {
-        // TODO: personalization
-
-        return Post::select('id')
-            ->inRandomOrder()
+        logger($query);
+        return Post::search($query)
             ->take(500)
             ->get();
     }
