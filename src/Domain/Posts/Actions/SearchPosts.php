@@ -5,7 +5,7 @@ namespace Domain\Posts\Actions;
 use Domain\Posts\Models\Post;
 use Illuminate\Support\Collection;
 
-class BuildUserFeed
+class SearchPosts
 {
     public function execute(): Collection
     {
