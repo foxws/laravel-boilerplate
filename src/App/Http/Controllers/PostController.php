@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Domain\Posts\DataObjects\PostData;
 use Domain\Posts\Models\Post;
 use Domain\Posts\QueryBuilders\PostIndexQuery;
-use Illuminate\Http\Request;
 use Spatie\LaravelData\PaginatedDataCollection;
 
 class PostController extends Controller
@@ -31,7 +30,7 @@ class PostController extends Controller
             );
     }
 
-    public function store(Request $request)
+    public function store(PostData $data)
     {
         //
     }
@@ -41,7 +40,7 @@ class PostController extends Controller
         return PostData::from($model);
     }
 
-    public function update(Request $request, $id)
+    public function update(PostData $data, Post $model)
     {
         //
     }
