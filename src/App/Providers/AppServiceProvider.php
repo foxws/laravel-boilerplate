@@ -5,6 +5,7 @@ namespace App\Providers;
 use Domain\Posts\Models\Post;
 use Domain\Tags\Models\Tag;
 use Domain\Users\Models\User;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Spatie\PrefixedIds\PrefixedIds;
@@ -19,6 +20,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->configurePrefixedIds();
+        $this->configureLazyLoading();
     }
 
     protected function configurePrefixedIds(): void
@@ -30,5 +32,10 @@ class AppServiceProvider extends ServiceProvider
             'post-' => Post::class,
             'tag-' => Tag::class,
         ]);
+    }
+
+    protected function configureLazyLoading(): void
+    {
+        Model::preventLazyLoading(! $this->app->isProduction());
     }
 }
