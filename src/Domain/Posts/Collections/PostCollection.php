@@ -4,7 +4,7 @@ namespace Domain\Posts\Collections;
 
 use Domain\Posts\DataObjects\PostData;
 use Domain\Posts\Models\Post;
-use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Collection;
 use Spatie\LaravelData\DataCollection;
 
 class PostCollection extends Collection

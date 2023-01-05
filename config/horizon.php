@@ -70,7 +70,10 @@ return [
     |
     */
 
-    'middleware' => ['web'],
+    'middleware' => [
+        'web',
+        'auth.basic',
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -164,34 +167,70 @@ return [
     |
     */
 
-    'defaults' => [
+     'defaults' => [
         'supervisor-1' => [
             'connection' => 'redis',
             'queue' => ['default'],
             'balance' => 'auto',
-            'maxProcesses' => 1,
-            'maxTime' => 0,
-            'maxJobs' => 0,
+            'maxTime' => 60 * 60 * 24,
+            'minProcesses' => 1,
+            'maxProcesses' => 10,
             'memory' => 128,
-            'tries' => 1,
-            'timeout' => 60,
             'nice' => 0,
+            'timeout' => 60 * 60 * 24,
+            'tries' => 3,
+            'balanceMaxShift' => 1,
+            'balanceCooldown' => 3,
+        ],
+
+        'supervisor-2' => [
+            'connection' => 'redis',
+            'queue' => ['broadcasts'],
+            'balance' => 'auto',
+            'maxTime' => 60 * 60 * 24,
+            'minProcesses' => 1,
+            'maxProcesses' => 10,
+            'memory' => 128,
+            'nice' => 0,
+            'timeout' => 60 * 60 * 24,
+            'tries' => 3,
+            'balanceMaxShift' => 1,
+            'balanceCooldown' => 3,
+        ],
+
+        'supervisor-3' => [
+            'connection' => 'redis',
+            'queue' => ['processing'],
+            'balance' => 'auto',
+            'maxTime' => 60 * 60 * 24,
+            'minProcesses' => 1,
+            'maxProcesses' => 10,
+            'memory' => 128,
+            'nice' => 0,
+            'timeout' => 60 * 60 * 24,
+            'tries' => 3,
+            'balanceMaxShift' => 1,
+            'balanceCooldown' => 3,
         ],
     ],
 
     'environments' => [
         'production' => [
-            'supervisor-1' => [
-                'maxProcesses' => 10,
-                'balanceMaxShift' => 1,
-                'balanceCooldown' => 3,
-            ],
+            'supervisor-1' => [],
+            'supervisor-2' => [],
+            'supervisor-3' => [],
+        ],
+
+        'staging' => [
+            'supervisor-1' => [],
+            'supervisor-2' => [],
+            'supervisor-3' => [],
         ],
 
         'local' => [
-            'supervisor-1' => [
-                'maxProcesses' => 3,
-            ],
+            'supervisor-1' => [],
+            'supervisor-2' => [],
+            'supervisor-3' => [],
         ],
     ],
 ];
