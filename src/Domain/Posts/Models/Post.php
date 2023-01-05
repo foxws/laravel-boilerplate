@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Scout\Searchable;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\ModelStates\HasStates;
 use Spatie\PrefixedIds\Models\Concerns\HasPrefixedId;
@@ -30,6 +31,7 @@ class Post extends Model
     use HasUser;
     use Notifiable;
     use InteractsWithMedia;
+    use Searchable;
     use SoftDeletes;
 
     /**
@@ -92,5 +94,10 @@ class Post extends Model
         return SlugOptions::create()
             ->generateSlugsFrom('name')
             ->saveSlugsTo('slug');
+    }
+
+    public function searchableAs(): string
+    {
+        return 'posts_index';
     }
 }

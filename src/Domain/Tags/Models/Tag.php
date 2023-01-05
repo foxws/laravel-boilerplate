@@ -11,6 +11,7 @@ use Domain\Tags\States\TagState;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Scout\Searchable;
 use Spatie\ModelStates\HasStates;
 use Spatie\PrefixedIds\Models\Concerns\HasPrefixedId;
 use Spatie\Tags\Tag as BaseTag;
@@ -21,6 +22,7 @@ class Tag extends BaseTag
     use HasPrefixedId;
     use HasStates;
     use Notifiable;
+    use Searchable;
 
     /**
      * @var array<int, string>
@@ -72,6 +74,11 @@ class Tag extends BaseTag
     public function getRouteKeyName(): string
     {
         return 'prefixed_id';
+    }
+
+    public function searchableAs(): string
+    {
+        return 'tags_index';
     }
 
     public function posts(): MorphToMany
