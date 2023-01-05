@@ -22,7 +22,13 @@ class PostController extends Controller
         $items = $query->jsonPaginate();
 
         return PostData::collection($items)
-            ->include('*');
+            ->include(
+                'id',
+                'slug',
+                'name',
+                'created_at',
+                'updated_at',
+            );
     }
 
     public function store(Request $request)

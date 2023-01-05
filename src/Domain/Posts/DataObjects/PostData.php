@@ -20,8 +20,8 @@ class PostData extends Data
     public function __construct(
         #[WithCast(PrefixedIdCast::class)]
         public string $id,
-        public Lazy|string $name,
         public Lazy|string $slug,
+        public Lazy|string $name,
         public Lazy|string $content,
         public Lazy|string $summary,
         public Lazy|Carbon $created_at,
@@ -36,8 +36,8 @@ class PostData extends Data
     {
         return new self(
             id: $model->getRouteKey(),
-            name: Lazy::create(fn () => $model->name),
             slug: Lazy::create(fn () => $model->slug),
+            name: Lazy::create(fn () => $model->name),
             content: Lazy::create(fn () => $model->content),
             summary: Lazy::create(fn () => $model->summary),
             created_at: Lazy::create(fn () => $model->created_at),
