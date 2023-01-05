@@ -38,13 +38,13 @@ return [
      * If you only need to display Next and Previous links, you may use
      * simple pagination to perform a more efficient query.
      */
-    'use_simple_pagination' => false,
+    'use_simple_pagination' => true,
 
     /*
      * If you want to use cursor pagination, set this to true.
      * This would override use_simple_pagination.
      */
-    'use_cursor_pagination' => true,
+    'use_cursor_pagination' => false,
 
     /*
      * Here you can override the base url to be used in the link items.

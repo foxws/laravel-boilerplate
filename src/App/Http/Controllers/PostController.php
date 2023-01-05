@@ -6,7 +6,7 @@ use Domain\Posts\DataObjects\PostData;
 use Domain\Posts\Models\Post;
 use Domain\Posts\QueryBuilders\PostIndexQuery;
 use Illuminate\Http\Request;
-use Spatie\LaravelData\CursorPaginatedDataCollection;
+use Spatie\LaravelData\PaginatedDataCollection;
 
 class PostController extends Controller
 {
@@ -17,7 +17,7 @@ class PostController extends Controller
         $this->authorizeResource(Post::class, 'post');
     }
 
-    public function index(PostIndexQuery $query): CursorPaginatedDataCollection
+    public function index(PostIndexQuery $query): PaginatedDataCollection
     {
         $items = $query->jsonPaginate();
 
