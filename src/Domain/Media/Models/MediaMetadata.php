@@ -41,9 +41,9 @@ class MediaMetadata extends Model
     /**
      * @var array<string, string>
      */
-    // protected $casts = [
-    // 'state' => MediaMediaState::class,
-    // ];
+    protected $casts = [
+        //
+    ];
 
     public function newEloquentBuilder($query): MediaMetadataQueryBuilder
     {
