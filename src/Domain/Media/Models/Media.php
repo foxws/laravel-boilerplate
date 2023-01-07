@@ -18,7 +18,17 @@ class Media extends BaseMedia
      * @var array<int, string>
      */
     protected $fillable = [
-        //
+        'name',
+        'file_name',
+        'mime_type',
+        'collection_name',
+        'disk',
+        'conversions_disk',
+        'size',
+        'manipulations',
+        'custom_properties',
+        'generated_conversions',
+        'responsive_images',
     ];
 
     /**

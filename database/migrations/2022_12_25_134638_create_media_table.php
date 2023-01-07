@@ -12,10 +12,10 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->morphs('model');
             $table->uuid('uuid')->nullable()->unique();
-            $table->string('collection_name');
             $table->string('name');
             $table->string('file_name');
             $table->string('mime_type')->nullable();
+            $table->string('collection_name');
             $table->string('disk');
             $table->string('conversions_disk')->nullable();
             $table->string('state')->nullable();
