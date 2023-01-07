@@ -37,7 +37,14 @@ class PostController extends Controller
 
     public function show(Post $model): PostData
     {
-        return PostData::from($model);
+        return PostData::from($model)
+            ->include(
+                'id',
+                'slug',
+                'name',
+                'created_at',
+                'updated_at',
+            );
     }
 
     public function update(PostData $data, Post $model)
@@ -45,7 +52,7 @@ class PostController extends Controller
         //
     }
 
-    public function destroy($id)
+    public function destroy(Post $model)
     {
         //
     }

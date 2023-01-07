@@ -22,10 +22,7 @@ return new class extends Migration
             $table->string('author')->nullable();
             $table->string('composer')->nullable();
             $table->string('album')->nullable();
-            $table->string('make')->nullable();
-            $table->string('model')->nullable();
             $table->string('location')->nullable();
-            $table->string('grouping')->nullable();
             $table->string('show')->nullable();
             $table->string('episode_id')->nullable();
             $table->string('season_number')->nullable();
