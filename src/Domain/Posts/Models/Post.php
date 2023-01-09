@@ -4,6 +4,7 @@ namespace Domain\Posts\Models;
 
 use Database\Factories\PostFactory;
 use Domain\Posts\Collections\PostCollection;
+use Domain\Posts\Enums\PostType;
 use Domain\Posts\QueryBuilders\PostQueryBuilder;
 use Domain\Posts\States\PostState;
 use Domain\Shared\Models\Concerns\HasSchemalessAttributes;
@@ -59,6 +60,7 @@ class Post extends Model
      */
     protected $casts = [
         'state' => PostState::class,
+        'type' => PostType::class,
         'published_at' => 'datetime',
     ];
 

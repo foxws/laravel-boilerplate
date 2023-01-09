@@ -20,7 +20,7 @@ class TagData extends Data
         public Lazy|string $name,
         public Lazy|string $slug,
         public Lazy|string $description,
-        public Lazy|string $type,
+        public Lazy|TagType $type,
         public Lazy|Carbon $created_at,
         public Lazy|Carbon $updated_at,
     ) {

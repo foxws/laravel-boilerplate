@@ -14,8 +14,8 @@ return new class extends Migration
             $table->json('name');
             $table->json('slug');
             $table->json('description');
-            $table->string('type')->nullable();
-            $table->string('state')->nullable();
+            $table->string('state');
+            $table->string('type');
             $table->integer('order_column')->nullable();
             $table->timestamps();
         });

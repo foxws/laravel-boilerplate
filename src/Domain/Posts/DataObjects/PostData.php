@@ -2,6 +2,7 @@
 
 namespace Domain\Posts\DataObjects;
 
+use Domain\Posts\Enums\PostType;
 use Domain\Posts\Models\Post;
 use Domain\Posts\Rules\PostExists;
 use Domain\Shared\Support\Casts\PrefixedIdCast;
@@ -24,6 +25,7 @@ class PostData extends Data
         public Lazy|string $name,
         public Lazy|string $content,
         public Lazy|string $summary,
+        public Lazy|PostType $type,
         public Lazy|Carbon $created_at,
         public Lazy|Carbon $updated_at,
         public Lazy|PostMetaData $meta,
@@ -41,6 +43,7 @@ class PostData extends Data
             name: Lazy::create(fn () => $model->name),
             content: Lazy::create(fn () => $model->content),
             summary: Lazy::create(fn () => $model->summary),
+            type: Lazy::create(fn () => $model->type),
             created_at: Lazy::create(fn () => $model->created_at),
             updated_at: Lazy::create(fn () => $model->updated_at),
             meta: Lazy::create(fn () => PostMetaData::from($model->meta)),

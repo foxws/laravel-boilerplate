@@ -22,8 +22,6 @@ class MediaMetaData extends Data
         public Lazy|string|null $encoder,
         public Lazy|bool|null $compilation,
         public Lazy|bool|null $gapless_playback,
-        public Lazy|string|null $description,
-        public Lazy|string|null $comment,
         public Lazy|string|null $synopsis,
     ) {
     }
@@ -44,8 +42,6 @@ class MediaMetaData extends Data
             encoder: Lazy::create(fn () => $meta->get('encoder')),
             compilation: Lazy::create(fn () => $meta->get('compilation')),
             gapless_playback: Lazy::create(fn () => $meta->get('gapless_playback')),
-            description: Lazy::create(fn () => $meta->get('description')),
-            comment: Lazy::create(fn () => $meta->get('comment')),
             synopsis: Lazy::create(fn () => $meta->get('synopsis')),
         );
     }

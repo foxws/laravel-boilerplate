@@ -44,7 +44,7 @@ class Tag extends BaseTag
      */
     protected $casts = [
         'state' => TagState::class,
-        'type' => TagType::class.':nullable',
+        'type' => TagType::class,
     ];
 
     /**
