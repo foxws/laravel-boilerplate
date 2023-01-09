@@ -6,6 +6,7 @@ use Database\Factories\PostFactory;
 use Domain\Posts\Collections\PostCollection;
 use Domain\Posts\QueryBuilders\PostQueryBuilder;
 use Domain\Posts\States\PostState;
+use Domain\Shared\Models\Concerns\HasSchemalessAttributes;
 use Domain\Users\Concerns\HasUser;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -25,13 +26,14 @@ class Post extends Model
 {
     use HasFactory;
     use HasPrefixedId;
+    use HasSchemalessAttributes;
     use HasStates;
     use HasTags;
     use HasTranslatableSlug;
     use HasTranslations;
     use HasUser;
-    use Notifiable;
     use InteractsWithMedia;
+    use Notifiable;
     use Searchable;
     use SoftDeletes;
 
