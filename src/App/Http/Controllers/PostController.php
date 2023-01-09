@@ -25,6 +25,7 @@ class PostController extends Controller
                 'id',
                 'slug',
                 'name',
+                'meta.color',
                 'created_at',
                 'updated_at',
             );

@@ -26,9 +26,10 @@ class PostData extends Data
         public Lazy|string $summary,
         public Lazy|Carbon $created_at,
         public Lazy|Carbon $updated_at,
+        public Lazy|PostMetaData $meta,
+        public Lazy|UserData $user,
         #[DataCollectionOf(TagData::class)]
         public Lazy|DataCollection $tags,
-        public Lazy|UserData $user,
     ) {
     }
 
@@ -42,8 +43,9 @@ class PostData extends Data
             summary: Lazy::create(fn () => $model->summary),
             created_at: Lazy::create(fn () => $model->created_at),
             updated_at: Lazy::create(fn () => $model->updated_at),
-            tags: Lazy::create(fn () => TagData::collection($model->tags)),
+            meta: Lazy::create(fn () => PostMetaData::from($model->meta)),
             user: Lazy::create(fn () => UserData::from($model->user)),
+            tags: Lazy::create(fn () => TagData::collection($model->tags)),
         );
     }
 

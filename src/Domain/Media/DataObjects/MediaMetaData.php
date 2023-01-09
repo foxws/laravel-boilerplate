@@ -2,10 +2,9 @@
 
 namespace Domain\Media\DataObjects;
 
-use Domain\Media\Models\MediaMetadata as Model;
-use Illuminate\Support\Carbon;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Lazy;
+use Spatie\SchemalessAttributes\SchemalessAttributes;
 
 class MediaMetaData extends Data
 {
@@ -26,34 +25,28 @@ class MediaMetaData extends Data
         public Lazy|string|null $description,
         public Lazy|string|null $comment,
         public Lazy|string|null $synopsis,
-        public Lazy|Carbon|null $released_at,
-        public Lazy|Carbon $created_at,
-        public Lazy|Carbon $updated_at,
     ) {
     }
 
-    public static function fromModel(Model $model): self
+    public static function fromModel(SchemalessAttributes $meta): self
     {
         return new self(
-            title: Lazy::create(fn () => $model->title),
-            copyright: Lazy::create(fn () => $model->copyright),
-            artist: Lazy::create(fn () => $model->artist),
-            author: Lazy::create(fn () => $model->author),
-            composer: Lazy::create(fn () => $model->composer),
-            album: Lazy::create(fn () => $model->album),
-            location: Lazy::create(fn () => $model->location),
-            show: Lazy::create(fn () => $model->show),
-            episode_id: Lazy::create(fn () => $model->episode_id),
-            season_number: Lazy::create(fn () => $model->season_number),
-            encoder: Lazy::create(fn () => $model->encoder),
-            compilation: Lazy::create(fn () => $model->compilation),
-            gapless_playback: Lazy::create(fn () => $model->gapless_playback),
-            description: Lazy::create(fn () => $model->description),
-            comment: Lazy::create(fn () => $model->comment),
-            synopsis: Lazy::create(fn () => $model->synopsis),
-            released_at: Lazy::create(fn () => $model->released_at),
-            created_at: Lazy::create(fn () => $model->created_at),
-            updated_at: Lazy::create(fn () => $model->updated_at),
+            title: Lazy::create(fn () => $meta->get('title')),
+            copyright: Lazy::create(fn () => $meta->get('copyright')),
+            artist: Lazy::create(fn () => $meta->get('artist')),
+            author: Lazy::create(fn () => $meta->get('author')),
+            composer: Lazy::create(fn () => $meta->get('composer')),
+            album: Lazy::create(fn () => $meta->get('album')),
+            location: Lazy::create(fn () => $meta->get('location')),
+            show: Lazy::create(fn () => $meta->get('show')),
+            episode_id: Lazy::create(fn () => $meta->get('episode_id')),
+            season_number: Lazy::create(fn () => $meta->get('season_number')),
+            encoder: Lazy::create(fn () => $meta->get('encoder')),
+            compilation: Lazy::create(fn () => $meta->get('compilation')),
+            gapless_playback: Lazy::create(fn () => $meta->get('gapless_playback')),
+            description: Lazy::create(fn () => $meta->get('description')),
+            comment: Lazy::create(fn () => $meta->get('comment')),
+            synopsis: Lazy::create(fn () => $meta->get('synopsis')),
         );
     }
 

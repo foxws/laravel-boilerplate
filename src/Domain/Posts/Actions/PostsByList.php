@@ -18,7 +18,7 @@ class PostsByList
     protected function getUserFeed(): Collection
     {
         return Post::select('id')
-            ->inRandomOrder()
+            // ->inRandomOrder()
             ->take(500)
             ->get();
     }
