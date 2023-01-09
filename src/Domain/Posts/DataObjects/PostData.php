@@ -10,6 +10,7 @@ use Domain\Tags\DataObjects\TagData;
 use Domain\Tags\Rules\TagExists;
 use Domain\Users\DataObjects\UserData;
 use Illuminate\Support\Carbon;
+use Spatie\Enum\Laravel\Rules\EnumRule;
 use Spatie\LaravelData\Attributes\DataCollectionOf;
 use Spatie\LaravelData\Attributes\WithCast;
 use Spatie\LaravelData\Data;
@@ -23,8 +24,8 @@ class PostData extends Data
         public string $id,
         public Lazy|string $slug,
         public Lazy|string $name,
-        public Lazy|string $content,
-        public Lazy|string $summary,
+        public Lazy|string|null $content,
+        public Lazy|string|null $summary,
         public Lazy|PostType $type,
         public Lazy|Carbon $created_at,
         public Lazy|Carbon $updated_at,
@@ -64,6 +65,7 @@ class PostData extends Data
             'name' => ['sometimes', 'string', 'max:255'],
             'content' => ['sometimes', 'string', 'max:2048'],
             'summary' => ['sometimes', 'string', 'max:1024'],
+            'type' => ['sometimes', new EnumRule(PostType::class)],
             'tags' => ['exclude_without:tags', 'nullable', 'array'],
             'tags.*.id' => ['required', 'string', new TagExists()],
         ];
