@@ -62,10 +62,10 @@ class PostData extends Data
     {
         return [
             'id' => ['required', 'string', new PostExists()],
-            'name' => ['sometimes', 'string', 'max:255'],
-            'content' => ['sometimes', 'string', 'max:2048'],
-            'summary' => ['sometimes', 'string', 'max:1024'],
-            'type' => ['sometimes', new EnumRule(PostType::class)],
+            'name' => ['sometimes', 'required', 'string', 'max:255'],
+            'content' => ['sometimes', 'nullable', 'string', 'max:2048'],
+            'summary' => ['sometimes', 'nullable', 'string', 'max:1024'],
+            'type' => ['sometimes', 'required', new EnumRule(PostType::class)],
             'tags' => ['exclude_without:tags', 'nullable', 'array'],
             'tags.*.id' => ['required', 'string', new TagExists()],
         ];
