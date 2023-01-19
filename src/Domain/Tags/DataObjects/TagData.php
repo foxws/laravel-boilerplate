@@ -48,9 +48,9 @@ class TagData extends Data
     {
         return [
             'id' => ['required', 'string', new TagExists()],
-            'name' => ['sometimes', 'string', 'max:255'],
-            'description' => ['sometimes', 'string', 'max:2048'],
-            'type' => ['sometimes', new EnumRule(TagType::class)],
+            'name' => ['sometimes', 'required', 'string', 'max:255'],
+            'description' => ['sometimes', 'nullable', 'string', 'max:2048'],
+            'type' => ['sometimes', 'nullable', 'string', new EnumRule(TagType::class)],
         ];
     }
 }
